@@ -35,4 +35,5 @@ model Shop {
 model Sessions {
   id String @id
   sessionFor String
+  sessionExpires Int
 }
