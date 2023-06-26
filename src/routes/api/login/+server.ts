@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const DB_CLIENT = DatabaseClient.getInstance();
 const BAD_CREDENTIAL_RESPONSE = new Response(`${LoginResponse.BadEmailPWCombo}`, { status: 401, statusText: "Unauthorized" });
+const SESSION_LENGTH = 12 * 60 * 60 * 1000; // Session Length is 12hrs
 
 // TODO: Implement PW hashing & checking
 export const POST: RequestHandler = async ({ request, cookies }) => {
@@ -33,6 +34,17 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 		return BAD_CREDENTIAL_RESPONSE;
 	}
 
-	cookies.set("SESSION_ID", uuidv4(), { path: "/" });
+	const sessionExpires = new Date(Date.now() + SESSION_LENGTH);
+	const sessionId = uuidv4();
+
+	await DB_CLIENT.prismaClient.sessions.create({
+		data: {
+			id: sessionId,
+			sessionFor: userWithEmail.email,
+			sessionExpires: BigInt(sessionExpires.getTime())
+		}
+	});
+
+	cookies.set("SESSION_ID", sessionId, { path: "/", expires: sessionExpires });
 	return new Response();
 };
