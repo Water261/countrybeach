@@ -31,3 +31,8 @@ model Shop {
   email String
   phoneNos String // Comma separated string of phone numbers
 }
+
+model Sessions {
+  id String @id
+  sessionFor String
+}
