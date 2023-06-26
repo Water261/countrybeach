@@ -1,3 +1,28 @@
+<script lang="ts">
+	import type { SvelteSubmitEvent } from "$lib/util/SvelteEvent";
+
+	let loginForm: HTMLFormElement;
+
+	async function onLoginSubmit(event: SvelteSubmitEvent) {
+		event.preventDefault();
+
+		const formData = new FormData(loginForm);
+
+		const loginResponse = await fetch("/api/login", {
+			method: "POST",
+			body: formData
+		});
+
+		if (!loginResponse.ok) {
+			// TODO: Handle unsuccessful logins
+			alert("Bad Creds");
+			return;
+		}
+
+		window.location.assign("/dashboard");
+	}
+</script>
+
 <svelte:head>
 	<title>Log In - Country Beach</title>
 </svelte:head>
@@ -7,7 +32,7 @@
 	<main class="w-1/2 h-screen flex flex-col p-4 bg-base-200">
 		<h1 class="text-4xl font-semibold">Country Beach</h1>
 
-		<form class="w-full flex flex-col justify-center items-center py-8 max-w-lg m-auto">
+		<form bind:this={loginForm} class="w-full flex flex-col justify-center items-center py-8 max-w-lg m-auto" on:submit={onLoginSubmit}>
 			<h2 class="text-5xl font-bold pb-2">Welcome Back</h2>
 			<p class="text-2xl">Please enter your details.</p>
 
@@ -27,7 +52,7 @@
 						<button type="button" class="link-secondary link-hover">Forgot Password?</button>
 					</span>
 				</label>
-				<input type="password" class="input input-bordered w-full" />
+				<input type="password" name="password" id="password" class="input input-bordered w-full" />
 			</div>
 
 			<div class="form-control text-center py-4">
