@@ -1,3 +1,5 @@
-export type SvelteEvent = Event & {
-    currentTarget: EventTarget & HTMLInputElement;
-}
+export type SvelteSubmitEvent = Event & {
+    readonly submitter: HTMLElement | null;
+} & {
+    currentTarget: EventTarget & HTMLFormElement;
+};
