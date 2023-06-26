@@ -2,11 +2,17 @@
 	import type { SvelteSubmitEvent } from "$lib/util/SvelteEvent";
 
 	let loginForm: HTMLFormElement;
+	let inputsDisabled = false;
+	let errorMessage: string;
 
 	async function onLoginSubmit(event: SvelteSubmitEvent) {
 		event.preventDefault();
 
+		inputsDisabled = true;
+
 		const formData = new FormData(loginForm);
+
+		console.log(formData);
 
 		const loginResponse = await fetch("/api/login", {
 			method: "POST",
@@ -15,7 +21,10 @@
 
 		if (!loginResponse.ok) {
 			// TODO: Handle unsuccessful logins
-			alert("Bad Creds");
+			errorMessage = "Email or password is incorrect.";
+
+			inputsDisabled = false;
+
 			return;
 		}
 
@@ -41,7 +50,7 @@
 				<label for="email" class="label">
 					<span class="label-text">Email Address</span>
 				</label>
-				<input type="email" name="email" id="email" class="input input-bordered w-full" />
+				<input type="email" name="email" id="email" class="input input-bordered w-full" disabled={inputsDisabled} />
 			</div>
 
 			<!-- Password Input -->
@@ -52,11 +61,11 @@
 						<button type="button" class="link-secondary link-hover">Forgot Password?</button>
 					</span>
 				</label>
-				<input type="password" name="password" id="password" class="input input-bordered w-full" />
+				<input type="password" name="password" id="password" class="input input-bordered w-full" disabled={inputsDisabled} />
 			</div>
 
 			<div class="form-control text-center py-4">
-				<p class="text-error invisible">&nbsp;</p>
+				<p class="text-error" bind:innerText={errorMessage} contenteditable="false"></p>
 			</div>
 
 			<div class="form-control w-full">
@@ -73,5 +82,9 @@
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
+	}
+
+	input:disabled {
+		@apply bg-base-300;
 	}
 </style>
