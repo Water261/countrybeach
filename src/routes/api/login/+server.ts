@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const DB_CLIENT = DatabaseClient.getInstance();
 const BAD_CREDENTIAL_RESPONSE = new Response(`${LoginResponse.BadEmailPWCombo}`, { status: 401, statusText: "Unauthorized" });
-const SESSION_LENGTH = 12 * 60 * 60 * 1000; // Session Length is 12hrs
+const SESSION_LENGTH = 12 * 60 * 60 * 1000; // Recommended session length is 12hrs (https://auth0.com/blog/balance-user-experience-and-security-to-retain-customers/)
 
 // TODO: Implement PW hashing & checking
 export const POST: RequestHandler = async ({ request, cookies }) => {
