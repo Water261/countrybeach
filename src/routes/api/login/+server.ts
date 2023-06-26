@@ -4,7 +4,7 @@ import type { RequestHandler } from "./$types";
 import { v4 as uuidv4 } from "uuid";
 
 const DB_CLIENT = DatabaseClient.getInstance();
-const BAD_CREDENTIAL_RESPONSE = new Response(`${LoginResponse.BadEmailPWCombo}`, { status: 400, statusText: "Bad Request" });
+const BAD_CREDENTIAL_RESPONSE = new Response(`${LoginResponse.BadEmailPWCombo}`, { status: 401, statusText: "Unauthorized" });
 
 // TODO: Implement PW hashing & checking
 export const POST: RequestHandler = async ({ request, cookies }) => {
