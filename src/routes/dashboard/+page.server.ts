@@ -33,7 +33,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 
 	const user = await DB_CLIENT.prismaClient.user.findUnique({
 		where: {
-			id: userSession.id
+			id: userSession.sessionFor
 		}
 	});
 
