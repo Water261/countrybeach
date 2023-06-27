@@ -1,6 +1,6 @@
 <div class="drawer lg:drawer-open">
 	<input type="checkbox" id="drawer" class="drawer-toggle" />
-	<div class="drawer-content">
+	<div class="drawer-content p-4">
 		<!-- TODO: Fix mobile nav -->
 		<label for="drawer" class="btn btn-ghost lg:hidden">
 			<svg
