@@ -6,10 +6,11 @@ function setup() {
 	const dbClient = DatabaseClient.getInstance();
 
 	// Schedule Session Cleanup
-	schedule("30 * * * *", () => {
-		dbClient.clearExpiredSessions()
+	schedule('30 * * * *', () => {
+		dbClient
+			.clearExpiredSessions()
 			.catch((e) => console.error(e))
-			.then(() => console.log("Successfully cleared invalid sessions"));
+			.then(() => console.log('Successfully cleared invalid sessions'));
 	});
 }
 

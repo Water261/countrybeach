@@ -1,4 +1,4 @@
-import { DatabaseClient } from "./DatabaseClient";
+import { DatabaseClient } from './DatabaseClient';
 
 const DB_CLIENT = DatabaseClient.getInstance();
 
@@ -10,7 +10,7 @@ export async function isValidSession(sessionId: string) {
 	});
 
 	if (session === null) {
-		console.log("Session does not exist");
+		console.log('Session does not exist');
 		return false;
 	}
 
@@ -21,7 +21,7 @@ export async function isValidSession(sessionId: string) {
 	});
 
 	if (user === null) {
-		console.log("Session was created for non-existant user");
+		console.log('Session was created for non-existant user');
 		return false;
 	}
 
@@ -29,7 +29,7 @@ export async function isValidSession(sessionId: string) {
 
 	// Current time is past expiry time
 	if (currentTime >= session.sessionExpires) {
-		console.log("Session has expired");
+		console.log('Session has expired');
 		return false;
 	}
 

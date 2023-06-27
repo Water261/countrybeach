@@ -22,4 +22,3 @@ function redirectToLogin(cookies: Cookies) {
 	cookies.delete('SESSION_ID');
 	return redirect(303, '/');
 }
-

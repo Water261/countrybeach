@@ -1,5 +1,5 @@
 export type SvelteSubmitEvent = Event & {
-    readonly submitter: HTMLElement | null;
+	readonly submitter: HTMLElement | null;
 } & {
-    currentTarget: EventTarget & HTMLFormElement;
+	currentTarget: EventTarget & HTMLFormElement;
 };
