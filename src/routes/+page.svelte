@@ -1,9 +1,10 @@
 <script lang="ts">
-	import type { SvelteSubmitEvent } from "$lib/util/SvelteEvent";
+	import type { SvelteSubmitEvent } from '$lib/util/SvelteEvent';
 
 	let loginForm: HTMLFormElement;
 	let inputsDisabled = false;
 	let errorMessage: string;
+	let showPassword = false;
 
 	async function onLoginSubmit(event: SvelteSubmitEvent) {
 		event.preventDefault();
@@ -14,21 +15,25 @@
 
 		console.log(formData);
 
-		const loginResponse = await fetch("/api/login", {
-			method: "POST",
+		const loginResponse = await fetch('/api/login', {
+			method: 'POST',
 			body: formData
 		});
 
 		if (!loginResponse.ok) {
 			// TODO: Handle unsuccessful logins
-			errorMessage = "Email or password is incorrect.";
+			errorMessage = 'Email or password is incorrect.';
 
 			inputsDisabled = false;
 
 			return;
 		}
 
-		window.location.assign("/dashboard");
+		window.location.assign('/dashboard');
+	}
+
+	async function togglePasswordVisibility() {
+		showPassword = !showPassword;
 	}
 </script>
 
@@ -41,7 +46,11 @@
 	<main class="w-1/2 h-screen flex flex-col p-4 bg-base-200">
 		<h1 class="text-4xl font-semibold">Country Beach</h1>
 
-		<form bind:this={loginForm} class="w-full flex flex-col justify-center items-center py-8 max-w-lg m-auto" on:submit={onLoginSubmit}>
+		<form
+			bind:this={loginForm}
+			class="w-full flex flex-col justify-center items-center py-8 max-w-lg m-auto"
+			on:submit={onLoginSubmit}
+		>
 			<h2 class="text-5xl font-bold pb-2">Welcome Back</h2>
 			<p class="text-2xl">Please enter your details.</p>
 
@@ -50,7 +59,13 @@
 				<label for="email" class="label">
 					<span class="label-text">Email Address</span>
 				</label>
-				<input type="email" name="email" id="email" class="input input-bordered w-full" disabled={inputsDisabled} />
+				<input
+					type="email"
+					name="email"
+					id="email"
+					class="input input-bordered w-full"
+					disabled={inputsDisabled}
+				/>
 			</div>
 
 			<!-- Password Input -->
@@ -58,14 +73,25 @@
 				<label for="password" class="label">
 					<span class="label-text">Password</span>
 					<span class="label-text-alt">
-						<button type="button" class="link-secondary link-hover">Forgot Password?</button>
+						<button
+							type="button"
+							class="link-secondary link-hover"
+							on:click={() => togglePasswordVisibility()}
+							>{showPassword ? 'Hide Password' : 'Show Password'}</button
+						>
 					</span>
 				</label>
-				<input type="password" name="password" id="password" class="input input-bordered w-full" disabled={inputsDisabled} />
+				<input
+					type={showPassword ? 'text' : 'password'}
+					name="password"
+					id="password"
+					class="input input-bordered w-full"
+					disabled={inputsDisabled}
+				/>
 			</div>
 
 			<div class="form-control text-center py-4">
-				<p class="text-error" bind:innerText={errorMessage} contenteditable="false"></p>
+				<p class="text-error" bind:innerText={errorMessage} contenteditable="false" />
 			</div>
 
 			<div class="form-control w-full">
@@ -78,7 +104,7 @@
 
 <style lang="postcss">
 	div#loginWrapper {
-		background-image: url("$lib/img/login-img.svg");
+		background-image: url('$lib/img/login-img.svg');
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
