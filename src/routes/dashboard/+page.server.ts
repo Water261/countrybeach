@@ -49,7 +49,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 		email: user.email,
 		salary: user.salary,
 		shopId: user.shopId
-	}
+	};
 
 	return ownUser;
 };
