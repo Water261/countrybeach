@@ -7,7 +7,9 @@ function setup() {
 
 	// Schedule Session Cleanup
 	schedule("30 * * * *", () => {
-		dbClient.clearExpiredSessions();
+		dbClient.clearExpiredSessions()
+			.catch((e) => console.error(e))
+			.then(() => console.log("Successfully cleared invalid sessions"));
 	});
 }
 
