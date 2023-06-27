@@ -16,4 +16,25 @@ export class DatabaseClient {
 
 		return DatabaseClient.instance;
 	}
+
+	// Clear expired sessions
+	private _isRemovingInvalidSessions = false;
+
+	public async clearExpiredSessions() {
+		if (this._isRemovingInvalidSessions) {
+			return;
+		}
+
+		this._isRemovingInvalidSessions = true;
+
+		await this.prismaClient.sessions.deleteMany({
+			where: {
+				sessionExpires: {
+					lt: BigInt(Date.now())
+				}
+			}
+		});
+
+		this._isRemovingInvalidSessions = false;
+	}
 }
