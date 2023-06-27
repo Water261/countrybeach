@@ -9,7 +9,8 @@ export async function isValidSession(sessionId: string) {
 		}
 	});
 
-	if (!session) {
+	if (session === null) {
+		console.log("Session does not exist");
 		return false;
 	}
 
@@ -19,13 +20,16 @@ export async function isValidSession(sessionId: string) {
 		}
 	});
 
-	if (!user) {
+	if (user === null) {
+		console.log("Session was created for non-existant user");
 		return false;
 	}
 
-	const currentTime = Date.now();
+	const currentTime = BigInt(Date.now());
 
-	if (currentTime > session.sessionExpires) {
+	// Current time is past expiry time
+	if (currentTime >= session.sessionExpires) {
+		console.log("Session has expired");
 		return false;
 	}
 

@@ -1,13 +1,25 @@
-import { isValidSession } from "$lib/server/isValidSession";
-import { redirect } from "@sveltejs/kit";
-import type { PageServerLoad } from "./$types";
+import { isValidSession } from '$lib/server/isValidSession';
+import { redirect, type Cookies } from '@sveltejs/kit';
+import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ cookies }) => {
-	const sessionId = cookies.get("SESSION_ID") ?? "";
+	const sessionId = cookies.get('SESSION_ID');
 
-	if (await isValidSession(sessionId)) {
-		redirect(303, "/dashboard");
+	if (sessionId === undefined) {
+		throw redirectToLogin(cookies);
 	}
 
-	cookies.delete("SESSION_ID");
+	const validSession = await isValidSession(sessionId);
+
+	console.log(`Session ID ${sessionId} is ${validSession ? 'valid' : 'invalid'}`);
+
+	if (!validSession) {
+		throw redirectToLogin(cookies);
+	}
 };
+
+function redirectToLogin(cookies: Cookies) {
+	cookies.delete('SESSION_ID');
+	return redirect(303, '/');
+}
+

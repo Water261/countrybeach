@@ -40,7 +40,7 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 	await DB_CLIENT.prismaClient.sessions.create({
 		data: {
 			id: sessionId,
-			sessionFor: userWithEmail.email,
+			sessionFor: userWithEmail.id,
 			sessionExpires: BigInt(sessionExpires.getTime())
 		}
 	});
