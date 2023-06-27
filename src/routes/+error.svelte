@@ -1,11 +1,15 @@
+<script lang="ts">
+	import { page } from "$app/stores";
+</script>
+
 <svelte:head>
-	<title>Not Found - Country Beach</title>
+	<title>{ $page.error?.message } - Country Beach</title>
 </svelte:head>
 
 <div class="hero min-h-screen bg-base-200">
 	<div class="hero-content text-center text-white">
 		<div class="max-w-md">
-			<h1 class="text-5xl font-bold">Not Found</h1>
+			<h1 class="text-5xl font-bold">{ $page.status } - { $page.error?.message }</h1>
 			<p class="py-6">We can't seem to find what you're looking for.</p>
 			<button class="btn btn-primary" on:click={() => window.history.back()}>Go Back?</button>
 		</div>
