@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { page } from '$app/stores';
+</script>
+
 <div class="drawer lg:drawer-open">
 	<input type="checkbox" id="drawer" class="drawer-toggle" />
 	<div class="drawer-content p-4">
@@ -30,9 +34,9 @@
 						<span class="text-secondary">Beach</span>
 					</div>
 				</a>
-				<div class="divider"></div>
-				<div class="flex flex-col w-full">
-					<a href="/dashboard" class="btn btn-ghost w-full">
+				<div class="divider" />
+				<div class="flex flex-col w-full navlinks">
+					<a href="/dashboard" class={`btn w-full ${$page.url.pathname === '/dashboard' ? 'btn-secondary' : 'btn-ghost'}`}>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
@@ -49,7 +53,7 @@
 						</svg>
 						My Info
 					</a>
-					<a href="/dashboard/staff" class="btn btn-ghost w-full">
+					<a href="/dashboard/staff" class={`btn w-full ${$page.url.pathname === '/dashboard/staff' ? 'btn-secondary' : 'btn-ghost'}`}>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
@@ -88,3 +92,9 @@
 		</div>
 	</div>
 </div>
+
+<style lang="postcss">
+	.navlinks * {
+		@apply mb-2;
+	}
+</style>
