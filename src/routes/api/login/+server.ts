@@ -1,5 +1,6 @@
 import { DatabaseClient } from '$lib/server/DatabaseClient';
 import { LoginResponse } from '$lib/util/LoginResponse';
+import { compare } from 'bcrypt';
 import type { RequestHandler } from './$types';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -33,7 +34,7 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 		return BAD_CREDENTIAL_RESPONSE;
 	}
 
-	if (password !== 'password') {
+	if (await compare(password, userWithEmail.password)) {
 		return BAD_CREDENTIAL_RESPONSE;
 	}
 
