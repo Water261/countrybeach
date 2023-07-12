@@ -13,6 +13,7 @@
 		"prisma": "prisma"
 	},
 	"devDependencies": {
+		"@prisma/client": "^5.0.0",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.22.2",
 		"@types/node-cron": "^3.0.8",
@@ -38,9 +39,6 @@
 		"vite": "^4.4.3"
 	},
 	"type": "module",
-	"dependencies": {
-		"@prisma/client": "^4.16.2"
-	},
 	"prisma": {
 		"seed": "node prisma/seed.js"
 	}
