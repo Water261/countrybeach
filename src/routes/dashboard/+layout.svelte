@@ -1,5 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import type { SvelteClickEvent } from '$lib/util/SvelteEvent';
+
+	async function logout(_: SvelteClickEvent) {
+		await fetch('/api/logout', { method: 'POST' });
+
+		window.location.assign('/');
+	}
 </script>
 
 <div class="drawer lg:drawer-open">
@@ -72,7 +79,7 @@
 					</a>
 				</div>
 			</div>
-			<button class="btn btn-ghost text-lg w-full">
+			<button class="btn btn-ghost text-lg w-full" on:click={logout}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
