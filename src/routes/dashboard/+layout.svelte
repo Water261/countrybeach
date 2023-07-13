@@ -13,14 +13,14 @@
 	<input type="checkbox" id="drawer" class="drawer-toggle" />
 	<div class="drawer-content p-4">
 		<!-- TODO: Fix mobile nav -->
-		<label for="drawer" class="btn btn-ghost lg:hidden">
+		<label for="drawer" class="btn-ghost btn lg:hidden">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
 				viewBox="0 0 24 24"
 				stroke-width="1.5"
 				stroke="currentColor"
-				class="w-6 h-6"
+				class="h-6 w-6"
 			>
 				<path
 					stroke-linecap="round"
@@ -31,16 +31,16 @@
 		</label>
 		<slot />
 	</div>
-	<div class="drawer-side shadow p-4 bg-base-100">
+	<div class="drawer-side bg-base-100 p-4 shadow">
 		<label for="drawer" class="drawer-overlay" />
-		<div class="flex flex-col items-center justify-between h-full">
+		<div class="flex h-full flex-col items-center justify-between">
 			<div>
-				<p class="inline-flex text-2xl normal-case font-bold select-none">
+				<p class="inline-flex select-none text-2xl font-bold normal-case">
 					<span>Country</span>
 					<span class="text-secondary">Beach</span>
 				</p>
 				<div class="divider" />
-				<div class="flex flex-col w-full navlinks">
+				<div class="navlinks flex w-full flex-col">
 					<a
 						href="/dashboard"
 						class={`btn w-full ${$page.url.pathname === '/dashboard' ? 'btn-active' : 'btn-ghost'}`}
@@ -51,7 +51,7 @@
 							viewBox="0 0 24 24"
 							stroke-width="1.5"
 							stroke="currentColor"
-							class="w-6 h-6 relative top-1"
+							class="relative top-1 h-6 w-6"
 						>
 							<path
 								stroke-linecap="round"
@@ -73,7 +73,7 @@
 							viewBox="0 0 24 24"
 							stroke-width="1.5"
 							stroke="currentColor"
-							class="w-6 h-6 relative top-1"
+							class="relative top-1 h-6 w-6"
 						>
 							<path
 								stroke-linecap="round"
@@ -85,14 +85,14 @@
 					</a>
 				</div>
 			</div>
-			<button class="btn btn-ghost text-lg w-full" on:click={logout}>
+			<button class="btn-ghost btn w-full text-lg" on:click={logout}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
 					viewBox="0 0 24 24"
 					stroke-width="1.5"
 					stroke="currentColor"
-					class="w-6 h-6"
+					class="h-6 w-6"
 				>
 					<path
 						stroke-linecap="round"
