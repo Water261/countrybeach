@@ -46,7 +46,7 @@
 	<main class="w-1/2 h-screen flex flex-col p-4 bg-base-200">
 		<h1 class="text-4xl font-semibold inline-flex">
 			<span>Country</span>
-			<span class="text-primary">Beach</span>
+			<span class="text-secondary">Beach</span>
 		</h1>
 
 		<form
@@ -98,7 +98,7 @@
 			</div>
 
 			<div class="form-control w-full">
-				<button type="submit" class="btn btn-primary text-xl">Log In</button>
+				<button type="submit" class="btn btn-secondary text-xl">Log In</button>
 			</div>
 		</form>
 		<p>&copy; {new Date().getFullYear()} - Country Beach</p>

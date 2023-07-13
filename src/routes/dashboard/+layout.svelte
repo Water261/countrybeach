@@ -37,7 +37,7 @@
 			<div>
 				<p class="inline-flex text-2xl normal-case font-bold select-none">
 					<span>Country</span>
-					<span class="text-primary">Beach</span>
+					<span class="text-secondary">Beach</span>
 				</p>
 				<div class="divider" />
 				<div class="flex flex-col w-full navlinks">
@@ -104,6 +104,6 @@
 	}
 
 	a.btn:hover, button.btn:hover {
-		@apply btn-primary;
+		@apply btn-secondary;
 	}
 </style>
