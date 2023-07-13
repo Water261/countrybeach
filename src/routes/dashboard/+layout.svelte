@@ -43,7 +43,7 @@
 				</a>
 				<div class="divider" />
 				<div class="flex flex-col w-full navlinks">
-					<a href="/dashboard" class={`btn w-full ${$page.url.pathname === '/dashboard' ? 'btn-secondary' : 'btn-ghost'}`}>
+					<a href="/dashboard" class={`btn w-full ${$page.url.pathname === '/dashboard' ? 'btn-active' : 'btn-ghost'}`}>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
@@ -60,7 +60,7 @@
 						</svg>
 						My Info
 					</a>
-					<a href="/dashboard/staff" class={`btn w-full ${$page.url.pathname === '/dashboard/staff' ? 'btn-secondary' : 'btn-ghost'}`}>
+					<a href="/dashboard/staff" class={`btn w-full ${$page.url.pathname === '/dashboard/staff' ? 'btn-active' : 'btn-ghost'}`}>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
@@ -103,5 +103,9 @@
 <style lang="postcss">
 	.navlinks * {
 		@apply mb-2;
+	}
+
+	a.btn:hover, button.btn:hover {
+		@apply btn-secondary;
 	}
 </style>
