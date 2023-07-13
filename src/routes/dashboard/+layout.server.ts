@@ -1,12 +1,12 @@
 import { isValidSession } from '$lib/server/isValidSession';
 import { redirect, type Cookies } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
+import type { LayoutServerLoad } from './$types';
 import { DatabaseClient } from '$lib/server/DatabaseClient';
 import type { User } from '$lib/util/DbModel';
 
 const DB_CLIENT = DatabaseClient.getInstance();
 
-export const load: PageServerLoad = async ({ cookies }) => {
+export const load: LayoutServerLoad = async ({ cookies }) => {
 	console.log("Got new dashboard page request");
 	const sessionId = cookies.get('SESSION_ID');
 
