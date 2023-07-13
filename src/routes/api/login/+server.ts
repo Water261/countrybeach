@@ -13,13 +13,13 @@ const SESSION_LENGTH = 12 * 60 * 60 * 1000; // Recommended session length is 12h
 
 // TODO: Implement PW hashing & checking
 export const POST: RequestHandler = async ({ request, cookies }) => {
-	console.log("Got new login request");
+	console.log('Got new login request');
 	const formData = await request.formData();
 	const formEmail = formData.get('email');
 	const formPassword = formData.get('password');
 
 	if (formEmail === null || formPassword === null) {
-		console.log("Client is missing required parameters");
+		console.log('Client is missing required parameters');
 		return BAD_CREDENTIAL_RESPONSE;
 	}
 
@@ -33,13 +33,13 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 	});
 
 	if (userWithEmail === null) {
-		console.log("Could not find specified user");
+		console.log('Could not find specified user');
 		return BAD_CREDENTIAL_RESPONSE;
 	}
 
 	const passwordMatches = await compare(password, userWithEmail.password);
 	if (!passwordMatches) {
-		console.log("Client attempted to login using incorrect password");
+		console.log('Client attempted to login using incorrect password');
 		return BAD_CREDENTIAL_RESPONSE;
 	}
 

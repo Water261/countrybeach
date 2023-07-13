@@ -7,7 +7,7 @@ import type { User } from '$lib/util/DbModel';
 const DB_CLIENT = DatabaseClient.getInstance();
 
 export const load: LayoutServerLoad = async ({ cookies }) => {
-	console.log("Got new dashboard page request");
+	console.log('Got new dashboard page request');
 	const sessionId = cookies.get('SESSION_ID');
 
 	if (sessionId === undefined) {
@@ -17,7 +17,7 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
 	const validSession = await isValidSession(sessionId);
 
 	if (!validSession) {
-		console.log("Invalid session found, redirecting to login page");
+		console.log('Invalid session found, redirecting to login page');
 		throw redirectToLogin(cookies);
 	}
 
@@ -28,7 +28,7 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
 	});
 
 	if (userSession === null) {
-		console.log("Could not find session provided by client, redirecting client to login page");
+		console.log('Could not find session provided by client, redirecting client to login page');
 		throw redirectToLogin(cookies);
 	}
 
@@ -39,7 +39,7 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
 	});
 
 	if (user === null) {
-		console.log("Could not find user, redirecting to login page");
+		console.log('Could not find user, redirecting to login page');
 		throw redirectToLogin(cookies);
 	}
 

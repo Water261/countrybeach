@@ -5,5 +5,5 @@ export type SvelteSubmitEvent = Event & {
 };
 
 export type SvelteClickEvent = MouseEvent & {
-    currentTarget: EventTarget & HTMLButtonElement;
-}
+	currentTarget: EventTarget & HTMLButtonElement;
+};
