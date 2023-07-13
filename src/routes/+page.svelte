@@ -95,7 +95,7 @@
 			</div>
 
 			<div class="form-control w-full">
-				<button type="submit" class="btn btn-secondary">Log In</button>
+				<button type="submit" class="btn btn-secondary text-xl">Log In</button>
 			</div>
 		</form>
 		<p>&copy; {new Date().getFullYear()} - Country Beach</p>
