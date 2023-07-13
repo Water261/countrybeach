@@ -34,7 +34,8 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 		return BAD_CREDENTIAL_RESPONSE;
 	}
 
-	if (await compare(password, userWithEmail.password)) {
+	const passwordMatches = await compare(password, userWithEmail.password);
+	if (!passwordMatches) {
 		return BAD_CREDENTIAL_RESPONSE;
 	}
 
