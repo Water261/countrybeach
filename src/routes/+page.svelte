@@ -44,7 +44,10 @@
 <!-- Inspiration: https://dribbble.com/shots/18890725-Log-in-page-Untitled-UI -->
 <div id="loginWrapper" class="flex">
 	<main class="w-1/2 h-screen flex flex-col p-4 bg-base-200">
-		<h1 class="text-4xl font-semibold">Country Beach</h1>
+		<h1 class="text-4xl font-semibold inline-flex">
+			<span>Country</span>
+			<span class="text-primary">Beach</span>
+		</h1>
 
 		<form
 			bind:this={loginForm}
