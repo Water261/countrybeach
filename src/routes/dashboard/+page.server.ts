@@ -15,8 +15,6 @@ export const load: PageServerLoad = async ({ cookies }) => {
 
 	const validSession = await isValidSession(sessionId);
 
-	console.log(`Session ID ${sessionId} is ${validSession ? 'valid' : 'invalid'}`);
-
 	if (!validSession) {
 		throw redirectToLogin(cookies);
 	}
