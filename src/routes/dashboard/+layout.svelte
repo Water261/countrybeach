@@ -103,7 +103,7 @@
 		@apply mb-2;
 	}
 
-	a.btn:hover, button.btn:hover {
+	.btn:hover {
 		@apply btn-secondary;
 	}
 </style>
