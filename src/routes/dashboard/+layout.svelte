@@ -35,12 +35,10 @@
 		<label for="drawer" class="drawer-overlay" />
 		<div class="flex flex-col items-center justify-between h-full">
 			<div>
-				<a href="/dashboard" class="text-2xl btn btn-ghost normal-case">
-					<div class="inline-flex">
-						<span>Country</span>
-						<span class="text-secondary">Beach</span>
-					</div>
-				</a>
+				<p class="inline-flex text-2xl normal-case font-bold select-none">
+					<span>Country</span>
+					<span class="text-primary">Beach</span>
+				</p>
 				<div class="divider" />
 				<div class="flex flex-col w-full navlinks">
 					<a href="/dashboard" class={`btn w-full ${$page.url.pathname === '/dashboard' ? 'btn-active' : 'btn-ghost'}`}>
@@ -106,6 +104,6 @@
 	}
 
 	a.btn:hover, button.btn:hover {
-		@apply btn-secondary;
+		@apply btn-primary;
 	}
 </style>
