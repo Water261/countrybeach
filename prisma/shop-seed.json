@@ -13,7 +13,7 @@
 		"address": "10 Brown Street, Waverton",
 		"state": "NSW",
 		"email": "waverton@countrybeach.com.au",
-		"phoneNos": "02 4063 6845,02 4063 6846"
+		"phoneNos": "02 4063 6845, 02 4063 6846"
 	},
 	{
 		"id": "B002",
@@ -21,7 +21,7 @@
 		"address": "43 Island Avenue, Currumbin",
 		"state": "QLD",
 		"email": "currumbin@countrybeach.com.au",
-		"phoneNos": "07 3222 3500,07 3222 3501"
+		"phoneNos": "07 3222 3500, 07 3222 3501"
 	},
 	{
 		"id": "B006",
