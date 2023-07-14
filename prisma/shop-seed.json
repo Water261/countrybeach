@@ -1,0 +1,50 @@
+[
+	{
+		"id": "B000",
+		"name": "Head Office",
+		"address": "2 Brown Street, Waverton",
+		"state": "NSW",
+		"email": "info@countrybeach.com.au",
+		"phoneNos": "02 8245 7600"
+	},
+	{
+		"id": "B001",
+		"name": "Waverton",
+		"address": "10 Brown Street, Waverton",
+		"state": "NSW",
+		"email": "waverton@countrybeach.com.au",
+		"phoneNos": "02 4063 6845,02 4063 6846"
+	},
+	{
+		"id": "B002",
+		"name": "Currumbin",
+		"address": "43 Island Avenue, Currumbin",
+		"state": "QLD",
+		"email": "currumbin@countrybeach.com.au",
+		"phoneNos": "07 3222 3500,07 3222 3501"
+	},
+	{
+		"id": "B006",
+		"name": "Bakers Hill",
+		"address": "1 Banksia Street, Bakers Hill",
+		"state": "WA",
+		"email": "bakershill@countrybeach.com.au",
+		"phoneNos": "08 9066 6596"
+	},
+	{
+		"id": "B007",
+		"name": "Lower Mangrove",
+		"address": "64 Wharf Street, Lower Mangrove",
+		"state": "NSW",
+		"email": "lowermangrove@countrybeach.com.au",
+		"phoneNos": "02 8245 7603"
+	},
+	{
+		"id": "B012",
+		"name": "Clarenza",
+		"address": "24 Purcell Place, Clarenza",
+		"state": "NSW",
+		"email": "clarenza@countrybeach.com.au",
+		"phoneNos": "02 8746 7522"
+	}
+]
