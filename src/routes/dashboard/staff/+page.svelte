@@ -15,6 +15,7 @@
 				<th>Position</th>
 				<th>Salary</th>
 				<th>Shop Id</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -35,6 +36,9 @@
 						}
 					</td>
 					<td>{employee.shopId}</td>
+					<td>
+						<a href={`/dashboard/staff/${employee.id}`} class="link link-secondary">Edit</a>
+					</td>
 				</tr>
 			{/each}
 		</tbody>
