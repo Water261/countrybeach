@@ -5,6 +5,12 @@ import { hash } from 'bcrypt';
 
 const client = new PrismaClient();
 
+for (const shop of shopData) {
+	await client.shop.create({
+		data: shop,
+	});
+}
+
 for (const user of userData) {
 	const defaultPassword = 'password';
 	const saltRounds = 10;
@@ -13,12 +19,6 @@ for (const user of userData) {
 
 	await client.user.create({
 		data: { ...user, password: hashedPw }
-	});
-}
-
-for (const shop of shopData) {
-	await client.shop.create({
-		data: shop,
 	});
 }
 

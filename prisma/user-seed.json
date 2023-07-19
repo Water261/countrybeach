@@ -1,6 +1,6 @@
 [
 	{
-		"id": "S1500",
+		"userId": "S1500",
 		"firstName": "Matt",
 		"lastName": "Smith",
 		"position": "Manager",
@@ -9,7 +9,7 @@
 		"shopId": "B001"
 	},
 	{
-		"id": "S0003",
+		"userId": "S0003",
 		"firstName": "Melinda",
 		"lastName": "Black",
 		"position": "Assistant",
@@ -18,7 +18,7 @@
 		"shopId": "B001"
 	},
 	{
-		"id": "S0010",
+		"userId": "S0010",
 		"firstName": "Tom",
 		"lastName": "Johnson",
 		"position": "Manager",
@@ -27,7 +27,7 @@
 		"shopId": "B006"
 	},
 	{
-		"id": "S3250",
+		"userId": "S3250",
 		"firstName": "Carter",
 		"lastName": "Ortiz",
 		"position": "Manager",
@@ -36,7 +36,7 @@
 		"shopId": "B012"
 	},
 	{
-		"id": "S2250",
+		"userId": "S2250",
 		"firstName": "Kay",
 		"lastName": "Adams",
 		"position": "Manager",
@@ -45,7 +45,7 @@
 		"shopId": "B002"
 	},
 	{
-		"id": "S0415",
+		"userId": "S0415",
 		"firstName": "Sofia",
 		"lastName": "Gutierrez",
 		"position": "Manager",
@@ -54,7 +54,7 @@
 		"shopId": "B007"
 	},
 	{
-		"id": "S7643",
+		"userId": "S7643",
 		"firstName": "Calvin",
 		"lastName": "Adams",
 		"position": "Assistant",
@@ -63,7 +63,7 @@
 		"shopId": "B007"
 	},
 	{
-		"id": "S7655",
+		"userId": "S7655",
 		"firstName": "Sarah",
 		"lastName": "Tuen",
 		"position": "HR Officer",

@@ -1,8 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// TODO: Use relations in Users & Shops
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,35 +11,42 @@ datasource db {
 }
 
 model User {
-  id String @id
-  password String
-  currentSessions Sessions?
+  userId String @id @map("id")
+  password String @default("$2a$10$OMP7ry3jH1NGAbMTO3x17OkZAe40S6nBbuR.9R.ZKV9r2VdVpgQ9K") // password
 
-  // Personal Info
   firstName String
   lastName String
-
-  // Company Info
+  email String @unique
   position String
-  email String
   salary Int
-  shop Shop @relation(fields: [shopId], references: [id])
+
+  shop Shop @relation(fields: [shopId], references: [shopId])
   shopId String
+
+  session Session?
+
+  @@map("users")
 }
 
 model Shop {
-  id String @id
-  name String
-  address String
+  shopId String @id @map("id")
+  name String @unique
+  address String @unique
   state String
-  email String
-  phoneNos String // Comma separated string of phone numbers
-  users User[]
+  email String @unique
+  phoneNumbers String @unique
+
+  staff User[]
+
+  @@map("shops")
 }
 
-model Sessions {
-  id String @id
-  sessionUser User @relation(fields: [sessionFor], references: [id])
-  sessionFor String @unique
+model Session {
+  sessionId String @id @default(uuid()) @map("id")
   sessionExpires BigInt
+
+  user User @relation(fields: [userId], references: [userId])
+  userId String @unique
+
+  @@map("sessions")
 }
