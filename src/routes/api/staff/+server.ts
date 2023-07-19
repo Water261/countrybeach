@@ -15,6 +15,9 @@ export const PATCH: RequestHandler = async ({ cookies, request }) => {
 			session: {
 				sessionId
 			}
+		},
+		select: {
+			position: true,
 		}
 	});
 
@@ -67,6 +70,9 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 			session: {
 				sessionId
 			}
+		},
+		select: {
+			position: true,
 		}
 	});
 
