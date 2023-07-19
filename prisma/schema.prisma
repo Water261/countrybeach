@@ -15,6 +15,7 @@ datasource db {
 model User {
   id String @id
   password String
+  currentSessions Sessions[]
 
   // Personal Info
   firstName String
@@ -40,6 +41,7 @@ model Shop {
 
 model Sessions {
   id String @id
+  sessionUser User @relation(fields: [sessionFor], references: [id])
   sessionFor String
   sessionExpires BigInt
 }
