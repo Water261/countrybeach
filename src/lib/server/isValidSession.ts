@@ -5,7 +5,7 @@ export async function isValidSession(sessionId: string) {
 		where: {
 			sessionId: sessionId,
 			sessionExpires: {
-				lt: Date.now()
+				gte: BigInt(Date.now())
 			}
 		}
 	});
