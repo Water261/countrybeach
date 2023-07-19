@@ -40,11 +40,13 @@
 					<td>{employee.shopId}</td>
 					{#if data.user.position === "HR Officer"}
 						<td>
-							<a href={`/dashboard/staff/${employee.id}`} class="link link-secondary">Edit</a>
+							<a href={`/dashboard/staff/modify/${employee.id}`} class="link link-secondary">Edit</a>
 						</td>
 					{/if}
 				</tr>
 			{/each}
 		</tbody>
 	</table>
+
+	<a href="/dashboard/staff/create" class="btn btn-secondary w-full my-10">Create New User</a>
 </div>
