@@ -16,7 +16,7 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 		},
 		select: {
 			userId: true,
-			password: true,
+			password: true
 		}
 	});
 
@@ -45,7 +45,7 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 		})
 		.catch((e) => {
 			console.error(e);
-			return null
+			return null;
 		})
 		.then((session) => {
 			if (session === null) {

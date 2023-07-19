@@ -15,8 +15,8 @@
 				<th>Position</th>
 				<th>Salary</th>
 				<th>Shop Id</th>
-				{#if data.user.position === "HR Officer"}
-					<th></th>
+				{#if data.user.position === 'HR Officer'}
+					<th />
 				{/if}
 			</tr>
 		</thead>
@@ -29,18 +29,18 @@
 					<td>{employee.email}</td>
 					<td>{employee.position}</td>
 					<td>
-						{
-							employee.salary.toLocaleString('en-AU', {
-								style: 'currency',
-								currency: 'AUD',
-								maximumFractionDigits: 0
-							})
-						}
+						{employee.salary.toLocaleString('en-AU', {
+							style: 'currency',
+							currency: 'AUD',
+							maximumFractionDigits: 0
+						})}
 					</td>
 					<td>{employee.shopId}</td>
-					{#if data.user.position === "HR Officer"}
+					{#if data.user.position === 'HR Officer'}
 						<td>
-							<a href={`/dashboard/staff/modify/${employee.userId}`} class="link link-secondary">Edit</a>
+							<a href={`/dashboard/staff/modify/${employee.userId}`} class="link-secondary link"
+								>Edit</a
+							>
 						</td>
 					{/if}
 				</tr>
@@ -48,5 +48,5 @@
 		</tbody>
 	</table>
 
-	<a href="/dashboard/staff/create" class="btn btn-secondary w-full my-10">Create New User</a>
+	<a href="/dashboard/staff/create" class="btn-secondary btn my-10 w-full">Create New User</a>
 </div>

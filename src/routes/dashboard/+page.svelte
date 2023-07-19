@@ -32,7 +32,7 @@
 		</svg>
 	</div>
 
-	<div class="flex w-1/3 flex-col mx-10">
+	<div class="mx-10 flex w-1/3 flex-col">
 		<h2 class="text-2xl font-bold">Employee Details</h2>
 		<ul class="flex flex-col">
 			<div class="form-control">

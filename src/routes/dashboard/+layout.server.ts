@@ -35,7 +35,7 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
 	}
 
 	// Clear password before handing it back to the client
-	user.password = "";
+	user.password = '';
 
 	return user;
 };

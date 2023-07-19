@@ -2,41 +2,41 @@
 	import type { SvelteSubmitEvent } from '$lib/util/SvelteEvent';
 
 	let createUserForm: HTMLFormElement;
-	let resultMessage = "";
+	let resultMessage = '';
 	let resultSuccess = false;
 
 	async function createUser(ev: SvelteSubmitEvent) {
 		ev.preventDefault();
 
 		const formData = new FormData(createUserForm);
-		const firstName = formData.get("firstName")?.toString().toLowerCase() ?? "";
-		const lastName = formData.get("lastName")?.toString().toLowerCase() ?? "";
+		const firstName = formData.get('firstName')?.toString().toLowerCase() ?? '';
+		const lastName = formData.get('lastName')?.toString().toLowerCase() ?? '';
 
 		const firstNameArray = firstName.split('');
 
 		const email = `${firstNameArray[0]}${lastName}@countrybeach.com.au`;
 
-		formData.set("email", email);
+		formData.set('email', email);
 
 		const saveChangesResponse = await fetch('/api/staff', {
-			method: "POST",
-			body: formData,
+			method: 'POST',
+			body: formData
 		});
 
 		if (!saveChangesResponse.ok) {
-			resultMessage = "Failed to create user";
+			resultMessage = 'Failed to create user';
 			resultSuccess = false;
 
 			return;
 		}
 
-		resultMessage = "Successfully created user";
+		resultMessage = 'Successfully created user';
 		resultSuccess = true;
 	}
 </script>
 
 <div class="flex justify-center px-40 py-5">
-	<form class="mx-10 flex w-1/3 flex-col" on:submit={createUser} bind:this={createUserForm}> 
+	<form class="mx-10 flex w-1/3 flex-col" on:submit={createUser} bind:this={createUserForm}>
 		<h2 class="text-2xl font-bold">Employee Details</h2>
 		<div class="form-control">
 			<label for="firstName" class="label">

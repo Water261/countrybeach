@@ -7,7 +7,7 @@ const client = new PrismaClient();
 
 for (const shop of shopData) {
 	await client.shop.create({
-		data: shop,
+		data: shop
 	});
 }
 

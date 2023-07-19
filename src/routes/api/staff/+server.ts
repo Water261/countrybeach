@@ -17,7 +17,7 @@ export const PATCH: RequestHandler = async ({ cookies, request }) => {
 			}
 		},
 		select: {
-			position: true,
+			position: true
 		}
 	});
 
@@ -30,13 +30,13 @@ export const PATCH: RequestHandler = async ({ cookies, request }) => {
 	}
 
 	const formData = await request.formData();
-	const userId = formData.get('id')?.toString() ?? "";
-	const firstName = formData.get('firstName')?.toString() ?? "";
-	const lastName = formData.get('lastName')?.toString() ?? "";
-	const email = formData.get('email')?.toString() ?? "";
-	const position = formData.get('position')?.toString() ?? "";
-	const salary = parseInt(formData.get('salary')?.toString() ?? "0");
-	const shopId = formData.get('shopId')?.toString() ?? "";
+	const userId = formData.get('id')?.toString() ?? '';
+	const firstName = formData.get('firstName')?.toString() ?? '';
+	const lastName = formData.get('lastName')?.toString() ?? '';
+	const email = formData.get('email')?.toString() ?? '';
+	const position = formData.get('position')?.toString() ?? '';
+	const salary = parseInt(formData.get('salary')?.toString() ?? '0');
+	const shopId = formData.get('shopId')?.toString() ?? '';
 
 	const updatePromise = DbClient.user.update({
 		where: {
@@ -50,7 +50,7 @@ export const PATCH: RequestHandler = async ({ cookies, request }) => {
 			salary,
 			shopId
 		}
-	})
+	});
 
 	return await updatePromise
 		.catch(() => new Response(null, { status: 500, statusText: 'Internal Server Error' }))
@@ -72,7 +72,7 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 			}
 		},
 		select: {
-			position: true,
+			position: true
 		}
 	});
 
@@ -85,12 +85,12 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 	}
 
 	const formData = await request.formData();
-	const firstName = formData.get('firstName')?.toString() ?? "";
-	const lastName = formData.get('lastName')?.toString() ?? "";
-	const email = formData.get('email')?.toString() ?? "";
-	const position = formData.get('position')?.toString() ?? "";
-	const salary = parseInt(formData.get('salary')?.toString() ?? "");
-	const shopId = formData.get('shopId')?.toString() ?? "";
+	const firstName = formData.get('firstName')?.toString() ?? '';
+	const lastName = formData.get('lastName')?.toString() ?? '';
+	const email = formData.get('email')?.toString() ?? '';
+	const position = formData.get('position')?.toString() ?? '';
+	const salary = parseInt(formData.get('salary')?.toString() ?? '');
+	const shopId = formData.get('shopId')?.toString() ?? '';
 
 	let userId = '';
 

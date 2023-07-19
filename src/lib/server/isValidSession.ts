@@ -1,4 +1,4 @@
-import { DbClient } from "../../hooks.server";
+import { DbClient } from '../../hooks.server';
 
 export async function isValidSession(sessionId: string) {
 	const session = await DbClient.session.findFirst({
