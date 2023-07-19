@@ -15,7 +15,9 @@
 				<th>Position</th>
 				<th>Salary</th>
 				<th>Shop Id</th>
-				<th></th>
+				{#if data.user.position === "HR Officer"}
+					<th></th>
+				{/if}
 			</tr>
 		</thead>
 		<tbody>
@@ -36,9 +38,11 @@
 						}
 					</td>
 					<td>{employee.shopId}</td>
-					<td>
-						<a href={`/dashboard/staff/${employee.id}`} class="link link-secondary">Edit</a>
-					</td>
+					{#if data.user.position === "HR Officer"}
+						<td>
+							<a href={`/dashboard/staff/${employee.id}`} class="link link-secondary">Edit</a>
+						</td>
+					{/if}
 				</tr>
 			{/each}
 		</tbody>
