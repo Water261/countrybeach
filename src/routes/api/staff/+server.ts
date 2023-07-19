@@ -1,8 +1,6 @@
-import { DatabaseClient } from '$lib/server/DatabaseClient';
 import { hash } from 'bcrypt';
 import type { RequestHandler } from './$types';
-
-const DB_CLIENT = DatabaseClient.getInstance();
+import { DbClient } from '../../../hooks.server';
 
 export const PATCH: RequestHandler = async ({ cookies, request }) => {
 	console.log('Got new staff update request');
@@ -12,10 +10,10 @@ export const PATCH: RequestHandler = async ({ cookies, request }) => {
 		return new Response(null, { status: 400, statusText: 'Bad Request' });
 	}
 
-	const user = await DB_CLIENT.prismaClient.user.findFirst({
+	const user = await DbClient.user.findFirst({
 		where: {
-			currentSessions: {
-				id: sessionId
+			session: {
+				sessionId
 			}
 		}
 	});
@@ -29,7 +27,7 @@ export const PATCH: RequestHandler = async ({ cookies, request }) => {
 	}
 
 	const formData = await request.formData();
-	const id = formData.get('id')?.toString() ?? "";
+	const userId = formData.get('id')?.toString() ?? "";
 	const firstName = formData.get('firstName')?.toString() ?? "";
 	const lastName = formData.get('lastName')?.toString() ?? "";
 	const email = formData.get('email')?.toString() ?? "";
@@ -37,9 +35,9 @@ export const PATCH: RequestHandler = async ({ cookies, request }) => {
 	const salary = parseInt(formData.get('salary')?.toString() ?? "0");
 	const shopId = formData.get('shopId')?.toString() ?? "";
 
-	const updatePromise = DB_CLIENT.prismaClient.user.update({
+	const updatePromise = DbClient.user.update({
 		where: {
-			id: id
+			userId
 		},
 		data: {
 			firstName,
@@ -64,10 +62,10 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 		return new Response(null, { status: 400, statusText: 'Bad Request' });
 	}
 
-	const user = await DB_CLIENT.prismaClient.user.findFirst({
+	const user = await DbClient.user.findFirst({
 		where: {
-			currentSessions: {
-				id: sessionId
+			session: {
+				sessionId
 			}
 		}
 	});
@@ -88,20 +86,20 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 	const salary = parseInt(formData.get('salary')?.toString() ?? "");
 	const shopId = formData.get('shopId')?.toString() ?? "";
 
-	let nextUserId = '';
+	let userId = '';
 
 	do {
-		const userIdNum = Math.floor(Math.random() * 100000);
-		const userId = `S${userIdNum}`;
+		const randomNum = Math.floor(Math.random() * 100000);
+		const newUserId = `S${randomNum}`;
 
-		nextUserId = userId;
-	} while ((await DB_CLIENT.prismaClient.user.findUnique({ where: { id: nextUserId } })) !== null);
+		userId = newUserId;
+	} while ((await DbClient.user.findUnique({ where: { userId: userId } })) !== null);
 
 	const password = await hash('password', 10);
 
-	const createPromise = DB_CLIENT.prismaClient.user.create({
+	const createPromise = DbClient.user.create({
 		data: {
-			id: nextUserId,
+			userId,
 			firstName,
 			lastName,
 			email,
