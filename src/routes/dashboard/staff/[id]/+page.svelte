@@ -21,6 +21,8 @@
 		if (!saveChangesResponse.ok) {
 			resultMessage = "Failed to save changes";
 			resultSuccess = false;
+
+			return;
 		}
 
 		resultMessage = "Successfully saved changes";
