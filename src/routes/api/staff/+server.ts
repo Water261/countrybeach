@@ -8,23 +8,15 @@ export const PATCH: RequestHandler = async ({ cookies, request }) => {
 	console.log('Got new staff update request');
 	const sessionId = cookies.get('SESSION_ID');
 
-	if (sessionId === null) {
+	if (sessionId === undefined) {
 		return new Response(null, { status: 400, statusText: 'Bad Request' });
 	}
 
-	const session = await DB_CLIENT.prismaClient.sessions.findUnique({
+	const user = await DB_CLIENT.prismaClient.user.findFirst({
 		where: {
-			id: sessionId
-		}
-	});
-
-	if (session === null) {
-		return new Response(null, { status: 500, statusText: 'Internal Server Error' });
-	}
-
-	const user = await DB_CLIENT.prismaClient.user.findUnique({
-		where: {
-			id: session.sessionFor
+			currentSessions: {
+				id: sessionId
+			}
 		}
 	});
 
@@ -37,20 +29,27 @@ export const PATCH: RequestHandler = async ({ cookies, request }) => {
 	}
 
 	const formData = await request.formData();
-	const id = formData.get('id');
-
-	if (id === null) {
-		return new Response(null, { status: 400, statusText: 'Bad Request' });
-	}
-
-	formData.delete('id');
+	const id = formData.get('id')?.toString() ?? "";
+	const firstName = formData.get('firstName')?.toString() ?? "";
+	const lastName = formData.get('lastName')?.toString() ?? "";
+	const email = formData.get('email')?.toString() ?? "";
+	const position = formData.get('position')?.toString() ?? "";
+	const salary = parseInt(formData.get('salary')?.toString() ?? "0");
+	const shopId = formData.get('shopId')?.toString() ?? "";
 
 	const updatePromise = DB_CLIENT.prismaClient.user.update({
 		where: {
-			id: id.toString()
+			id: id
 		},
-		data: formData
-	});
+		data: {
+			firstName,
+			lastName,
+			email,
+			position,
+			salary,
+			shopId
+		}
+	})
 
 	return await updatePromise
 		.catch(() => new Response(null, { status: 500, statusText: 'Internal Server Error' }))
@@ -65,19 +64,11 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 		return new Response(null, { status: 400, statusText: 'Bad Request' });
 	}
 
-	const session = await DB_CLIENT.prismaClient.sessions.findUnique({
+	const user = await DB_CLIENT.prismaClient.user.findFirst({
 		where: {
-			id: sessionId
-		}
-	});
-
-	if (session === null) {
-		return new Response(null, { status: 500, statusText: 'Internal Server Error' });
-	}
-
-	const user = await DB_CLIENT.prismaClient.user.findUnique({
-		where: {
-			id: session.sessionFor
+			currentSessions: {
+				id: sessionId
+			}
 		}
 	});
 
@@ -90,23 +81,12 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 	}
 
 	const formData = await request.formData();
-	const firstName = formData.get('firstName');
-	const lastName = formData.get('lastName');
-	const email = formData.get('email');
-	const position = formData.get('position');
-	const salary = formData.get('salary');
-	const shopId = formData.get('shopId');
-
-	if (
-		firstName === null ||
-		lastName === null ||
-		email === null ||
-		position === null ||
-		salary === null ||
-		shopId === null
-	) {
-		return new Response(null, { status: 400, statusText: 'Bad Request' });
-	}
+	const firstName = formData.get('firstName')?.toString() ?? "";
+	const lastName = formData.get('lastName')?.toString() ?? "";
+	const email = formData.get('email')?.toString() ?? "";
+	const position = formData.get('position')?.toString() ?? "";
+	const salary = parseInt(formData.get('salary')?.toString() ?? "");
+	const shopId = formData.get('shopId')?.toString() ?? "";
 
 	let nextUserId = '';
 
@@ -122,13 +102,13 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 	const createPromise = DB_CLIENT.prismaClient.user.create({
 		data: {
 			id: nextUserId,
-			firstName: firstName.toString(),
-			lastName: lastName.toString(),
-			email: email.toString(),
-			password: password,
-			position: position.toString(),
-			salary: parseInt(salary.toString()),
-			shopId: shopId.toString()
+			firstName,
+			lastName,
+			email,
+			position,
+			salary,
+			shopId,
+			password
 		}
 	});
 
