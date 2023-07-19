@@ -13,6 +13,8 @@
 
 		const formData = new FormData(saveChangesForm);
 
+		formData.set("id", data.id);
+
 		const saveChangesResponse = await fetch('/api/staff', {
 			method: "PATCH",
 			body: formData,
