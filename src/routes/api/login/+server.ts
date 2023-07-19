@@ -13,6 +13,10 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 	const user = await DbClient.user.findFirst({
 		where: {
 			email: email
+		},
+		select: {
+			userId: true,
+			password: true,
 		}
 	});
 
