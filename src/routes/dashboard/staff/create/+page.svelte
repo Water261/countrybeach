@@ -14,12 +14,16 @@
 		const formData = new FormData(createUserForm);
 		const firstName = formData.get('firstName')?.toString().toLowerCase() ?? '';
 		const lastName = formData.get('lastName')?.toString().toLowerCase() ?? '';
+		const salary = formData.get('salary')?.toString() ?? '';
 
 		const firstNameArray = firstName.split('');
 
 		const email = `${firstNameArray[0]}${lastName}@countrybeach.com.au`;
 
+		const compactedSalary = salary.replaceAll(' ', '');
+
 		formData.set('email', email);
+		formData.set('salary', compactedSalary);
 
 		const saveChangesResponse = await fetch('/api/staff', {
 			method: 'POST',
