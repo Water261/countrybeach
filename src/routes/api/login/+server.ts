@@ -31,6 +31,12 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 		return new Response(null, { status: 401, statusText: 'Unauthorized' });
 	}
 
+	await DbClient.session.deleteMany({
+		where: {
+			userId: user.userId
+		}
+	});
+
 	const sessionExpires = new Date(Date.now() + SESSION_LENGTH);
 
 	return await DbClient.session
