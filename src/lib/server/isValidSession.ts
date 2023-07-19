@@ -1,35 +1,17 @@
-import { DatabaseClient } from './DatabaseClient';
-
-const DB_CLIENT = DatabaseClient.getInstance();
+import { DbClient } from "../../hooks.server";
 
 export async function isValidSession(sessionId: string) {
-	const session = await DB_CLIENT.prismaClient.sessions.findUnique({
+	const session = await DbClient.session.findFirst({
 		where: {
-			id: sessionId
+			sessionId: sessionId,
+			sessionExpires: {
+				lt: Date.now()
+			}
 		}
 	});
 
 	if (session === null) {
 		console.log('Session does not exist');
-		return false;
-	}
-
-	const user = await DB_CLIENT.prismaClient.user.findUnique({
-		where: {
-			id: session.sessionFor
-		}
-	});
-
-	if (user === null) {
-		console.log('Session was created for non-existant user');
-		return false;
-	}
-
-	const currentTime = BigInt(Date.now());
-
-	// Current time is past expiry time
-	if (currentTime >= session.sessionExpires) {
-		console.log('Session has expired');
 		return false;
 	}
 
