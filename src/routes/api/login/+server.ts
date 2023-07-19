@@ -1,59 +1,48 @@
-import { DatabaseClient } from '$lib/server/DatabaseClient';
-import { LoginResponse } from '$lib/util/LoginResponse';
 import { compare } from 'bcrypt';
 import type { RequestHandler } from './$types';
-import { v4 as uuidv4 } from 'uuid';
+import { DbClient } from '../../../hooks.server';
 
-const DB_CLIENT = DatabaseClient.getInstance();
-const BAD_CREDENTIAL_RESPONSE = new Response(`${LoginResponse.BadEmailPWCombo}`, {
-	status: 401,
-	statusText: 'Unauthorized'
-});
 const SESSION_LENGTH = 12 * 60 * 60 * 1000; // Recommended session length is 12hrs (https://auth0.com/blog/balance-user-experience-and-security-to-retain-customers/)
 
-// TODO: Implement PW hashing & checking
 export const POST: RequestHandler = async ({ request, cookies }) => {
 	console.log('Got new login request');
 	const formData = await request.formData();
-	const formEmail = formData.get('email');
-	const formPassword = formData.get('password');
+	const email = formData.get('email')?.toString() ?? '';
+	const password = formData.get('password')?.toString() ?? '';
 
-	if (formEmail === null || formPassword === null) {
-		console.log('Client is missing required parameters');
-		return BAD_CREDENTIAL_RESPONSE;
-	}
-
-	const email = formEmail.toString();
-	const password = formPassword.toString();
-
-	const userWithEmail = await DB_CLIENT.prismaClient.user.findFirst({
+	const user = await DbClient.user.findFirst({
 		where: {
 			email: email
 		}
 	});
 
-	if (userWithEmail === null) {
+	if (user === null) {
 		console.log('Could not find specified user');
-		return BAD_CREDENTIAL_RESPONSE;
+		return new Response(null, { status: 401, statusText: 'Unauthorized' });
 	}
 
-	const passwordMatches = await compare(password, userWithEmail.password);
+	const passwordMatches = await compare(password, user.password);
 	if (!passwordMatches) {
 		console.log('Client attempted to login using incorrect password');
-		return BAD_CREDENTIAL_RESPONSE;
+		return new Response(null, { status: 401, statusText: 'Unauthorized' });
 	}
 
 	const sessionExpires = new Date(Date.now() + SESSION_LENGTH);
-	const sessionId = uuidv4();
 
-	await DB_CLIENT.prismaClient.sessions.create({
-		data: {
-			id: sessionId,
-			sessionFor: userWithEmail.id,
-			sessionExpires: BigInt(sessionExpires.getTime())
-		}
-	});
+	return await DbClient.session
+		.create({
+			data: {
+				sessionExpires: sessionExpires.getTime(),
+				userId: user.userId
+			}
+		})
+		.catch(() => null)
+		.then((session) => {
+			if (session === null) {
+				return new Response(null, { status: 500, statusText: 'Internal Server Error' });
+			}
 
-	cookies.set('SESSION_ID', sessionId, { path: '/', expires: sessionExpires });
-	return new Response();
+			cookies.set('SESSION_ID', session.sessionId, { path: '/', expires: sessionExpires });
+			return new Response(null, { status: 200, statusText: 'Ok' });
+		});
 };
