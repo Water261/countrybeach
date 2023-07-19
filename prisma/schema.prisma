@@ -1,6 +1,8 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// TODO: Use relations in Users & Shops
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -22,6 +24,7 @@ model User {
   position String
   email String
   salary Int
+  shop Shop @relation(fields: [shopId], references: [id])
   shopId String
 }
 
@@ -32,6 +35,7 @@ model Shop {
   state String
   email String
   phoneNos String // Comma separated string of phone numbers
+  users User[]
 }
 
 model Sessions {
