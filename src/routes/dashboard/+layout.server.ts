@@ -1,10 +1,7 @@
 import { isValidSession } from '$lib/server/isValidSession';
 import { redirect, type Cookies } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
-import { DatabaseClient } from '$lib/server/DatabaseClient';
-import type { User } from '$lib/util/DbModel';
-
-const DB_CLIENT = DatabaseClient.getInstance();
+import { DbClient } from '../../hooks.server';
 
 export const load: LayoutServerLoad = async ({ cookies }) => {
 	console.log('Got new dashboard page request');
@@ -21,11 +18,14 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
 		throw redirectToLogin(cookies);
 	}
 
-	const user = await DB_CLIENT.prismaClient.user.findFirst({
+	const user = await DbClient.user.findFirst({
 		where: {
-			currentSessions: {
-				id: sessionId
+			session: {
+				sessionId
 			}
+		},
+		include: {
+			shop: true
 		}
 	});
 
@@ -34,17 +34,7 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
 		throw redirectToLogin(cookies);
 	}
 
-	const ownUser: User = {
-		id: user.id,
-		firstName: user.firstName,
-		lastName: user.lastName,
-		position: user.position,
-		email: user.email,
-		salary: user.salary,
-		shopId: user.shopId
-	};
-
-	return ownUser;
+	return user;
 };
 
 function redirectToLogin(cookies: Cookies) {

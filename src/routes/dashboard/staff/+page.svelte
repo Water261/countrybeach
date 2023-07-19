@@ -23,7 +23,7 @@
 		<tbody>
 			{#each data.employees as employee}
 				<tr>
-					<td>{employee.id}</td>
+					<td>{employee.userId}</td>
 					<td>{employee.firstName}</td>
 					<td>{employee.lastName}</td>
 					<td>{employee.email}</td>
@@ -40,7 +40,7 @@
 					<td>{employee.shopId}</td>
 					{#if data.user.position === "HR Officer"}
 						<td>
-							<a href={`/dashboard/staff/modify/${employee.id}`} class="link link-secondary">Edit</a>
+							<a href={`/dashboard/staff/modify/${employee.userId}`} class="link link-secondary">Edit</a>
 						</td>
 					{/if}
 				</tr>

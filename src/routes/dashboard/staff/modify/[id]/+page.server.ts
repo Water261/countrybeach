@@ -1,14 +1,12 @@
-import { DatabaseClient } from "$lib/server/DatabaseClient";
 import { error } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
-
-const DB_CLIENT = DatabaseClient.getInstance();
+import { DbClient } from "../../../../../hooks.server";
 
 export const load: PageServerLoad = async ({ params }) => {
 	const employeeId = params.id;
-	const employee = await DB_CLIENT.prismaClient.user.findUnique({
+	const employee = await DbClient.user.findUnique({
 		where: {
-			id: employeeId,
+			userId: employeeId,
 		}
 	});
 

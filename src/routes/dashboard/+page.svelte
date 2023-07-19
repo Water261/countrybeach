@@ -2,10 +2,8 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-	const userData = data.user;
-	const shopData = data.shop;
 
-	const salary = userData.salary.toLocaleString('en-AU', {
+	const salary = data.salary.toLocaleString('en-AU', {
 		style: 'currency',
 		currency: 'AUD',
 		maximumFractionDigits: 0
@@ -46,7 +44,7 @@
 					type="text"
 					class="input-bordered input input-disabled"
 					disabled
-					value={userData.firstName}
+					value={data.firstName}
 				/>
 			</div>
 			<div class="form-control">
@@ -58,7 +56,7 @@
 					type="text"
 					class="input-bordered input input-disabled"
 					disabled
-					value={userData.lastName}
+					value={data.lastName}
 				/>
 			</div>
 			<div class="form-control">
@@ -70,7 +68,7 @@
 					type="text"
 					class="input-bordered input input-disabled"
 					disabled
-					value={userData.email}
+					value={data.email}
 				/>
 			</div>
 			<div class="form-control">
@@ -82,7 +80,7 @@
 					type="text"
 					class="input-bordered input input-disabled"
 					disabled
-					value={userData.position}
+					value={data.position}
 				/>
 			</div>
 			<div class="form-control">
@@ -111,7 +109,7 @@
 					type="text"
 					class="input-bordered input input-disabled w-full"
 					disabled
-					value={shopData.name}
+					value={data.shop.name}
 				/>
 			</div>
 			<div class="form-control">
@@ -123,7 +121,7 @@
 					type="text"
 					class="input-bordered input input-disabled"
 					disabled
-					value={shopData.address}
+					value={data.shop.address}
 				/>
 			</div>
 			<div class="form-control">
@@ -135,7 +133,7 @@
 					type="text"
 					class="input-bordered input input-disabled"
 					disabled
-					value={shopData.state}
+					value={data.shop.state}
 				/>
 			</div>
 			<div class="form-control">
@@ -147,7 +145,7 @@
 					type="text"
 					class="input-bordered input input-disabled"
 					disabled
-					value={shopData.email}
+					value={data.shop.email}
 				/>
 			</div>
 			<div class="form-control">
@@ -159,7 +157,7 @@
 					type="text"
 					class="input-bordered input input-disabled"
 					disabled
-					value={shopData.phoneNos}
+					value={data.shop.phoneNumbers}
 				/>
 			</div>
 		</div>

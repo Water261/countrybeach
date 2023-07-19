@@ -34,9 +34,15 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 			data: {
 				sessionExpires: sessionExpires.getTime(),
 				userId: user.userId
+			},
+			include: {
+				user: true
 			}
 		})
-		.catch(() => null)
+		.catch((e) => {
+			console.error(e);
+			return null
+		})
 		.then((session) => {
 			if (session === null) {
 				return new Response(null, { status: 500, statusText: 'Internal Server Error' });
