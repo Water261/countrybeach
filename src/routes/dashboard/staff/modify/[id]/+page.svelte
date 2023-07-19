@@ -13,7 +13,7 @@
 
 		const formData = new FormData(saveChangesForm);
 
-		formData.set('id', data.id);
+		formData.set('id', data.employee.userId);
 
 		const saveChangesResponse = await fetch('/api/staff', {
 			method: 'PATCH',
@@ -44,7 +44,7 @@
 				name="firstName"
 				type="text"
 				class="input-bordered input"
-				value={data.firstName}
+				value={data.employee.firstName}
 			/>
 		</div>
 		<div class="form-control">
@@ -56,14 +56,14 @@
 				name="lastName"
 				type="text"
 				class="input-bordered input"
-				value={data.lastName}
+				value={data.employee.lastName}
 			/>
 		</div>
 		<div class="form-control">
 			<label for="email" class="label">
 				<span class="label-text">Email Address</span>
 			</label>
-			<input id="email" name="email" type="text" class="input-bordered input" value={data.email} />
+			<input id="email" name="email" type="text" class="input-bordered input" value={data.employee.email} />
 		</div>
 		<div class="form-control">
 			<label for="position" class="label">
@@ -74,7 +74,7 @@
 				name="position"
 				type="text"
 				class="input-bordered input"
-				value={data.position}
+				value={data.employee.position}
 			/>
 		</div>
 		<div class="form-control">
@@ -86,20 +86,18 @@
 				name="salary"
 				type="text"
 				class="input-bordered input"
-				value={data.salary}
+				value={data.employee.salary}
 			/>
 		</div>
 		<div class="form-control">
 			<label for="shopId" class="label">
-				<span class="label-text">Shop Id</span>
+				<span class="label-text">Shop</span>
 			</label>
-			<input
-				id="shopId"
-				name="shopId"
-				type="text"
-				class="input-bordered input"
-				value={data.shopId}
-			/>
+			<select name="shopId" id="shopId" class="select select-bordered">
+				{#each data.shops as shop}
+					<option selected={data.employee.shopId === shop.shopId} value={shop.shopId}>{shop.name}</option>
+				{/each}
+			</select>
 		</div>
 		<div class="form-control my-4">
 			<button class="btn-secondary btn">Save Changes</button>
