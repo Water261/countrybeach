@@ -1,5 +1,8 @@
 <script lang="ts">
 	import type { SvelteSubmitEvent } from '$lib/util/SvelteEvent';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
 
 	let createUserForm: HTMLFormElement;
 	let resultMessage = '';
@@ -64,12 +67,16 @@
 		</div>
 		<div class="form-control">
 			<label for="shopId" class="label">
-				<span class="label-text">Shop Id</span>
+				<span class="label-text">Shop</span>
 			</label>
-			<input id="shopId" name="shopId" type="text" class="input-bordered input" required />
+			<select name="shopId" id="shopId" class="select select-bordered">
+				{#each data.shops as shop}
+					<option selected={shop.shopId === "B000"} value={shop.shopId}>{shop.name}</option>
+				{/each}
+			</select>
 		</div>
 		<div class="form-control my-4">
-			<button class="btn-secondary btn">Create User</button>
+			<button class="btn-secondary btn">Create Staff Member</button>
 		</div>
 		<div class="form-control">
 			<p class={`${resultSuccess ? 'text-success' : 'text-error'} text-center`}>{resultMessage}</p>
