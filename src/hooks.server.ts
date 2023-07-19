@@ -1,17 +1,14 @@
-import { DatabaseClient } from '$lib/server/DatabaseClient';
+import { PrismaClient } from '@prisma/client';
 import { schedule } from 'node-cron';
 
-function setup() {
-	// Initialise DB
-	const dbClient = DatabaseClient.getInstance();
+export const DbClient = new PrismaClient();
 
-	// Schedule Session Cleanup
-	schedule('30 * * * *', () => {
-		dbClient
-			.clearExpiredSessions()
-			.catch((e) => console.error(e))
-			.then(() => console.log('Successfully cleared invalid sessions'));
-	});
-}
-
-setup();
+schedule('30 * * * *', () => {
+	DbClient.session.deleteMany({
+		where: {
+			sessionExpires: {
+				lt: Date.now()
+			}
+		}
+	})
+});
