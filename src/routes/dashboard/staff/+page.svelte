@@ -14,7 +14,7 @@
 				<th>Email</th>
 				<th>Position</th>
 				<th>Salary</th>
-				<th>Shop Id</th>
+				<th>Shop</th>
 				{#if data.user.position === 'HR Officer'}
 					<th />
 				{/if}
@@ -35,7 +35,7 @@
 							maximumFractionDigits: 0
 						})}
 					</td>
-					<td>{employee.shopId}</td>
+					<td>{employee.shop.name}</td>
 					{#if data.user.position === 'HR Officer'}
 						<td>
 							<a href={`/dashboard/staff/modify/${employee.userId}`} class="link-secondary link"

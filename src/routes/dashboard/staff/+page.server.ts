@@ -10,10 +10,17 @@ export const load: PageServerLoad = async ({ parent }) => {
 		employees = await DbClient.user.findMany({
 			where: {
 				shopId: parentData.shopId
+			},
+			include: {
+				shop: true,
 			}
 		});
 	} else if (parentData.position === 'HR Officer') {
-		employees = await DbClient.user.findMany();
+		employees = await DbClient.user.findMany({
+			include: {
+				shop: true,
+			}
+		});
 	}
 
 	if (employees === null) {
