@@ -21,20 +21,11 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
 		throw redirectToLogin(cookies);
 	}
 
-	const userSession = await DB_CLIENT.prismaClient.sessions.findUnique({
+	const user = await DB_CLIENT.prismaClient.user.findFirst({
 		where: {
-			id: sessionId
-		}
-	});
-
-	if (userSession === null) {
-		console.log('Could not find session provided by client, redirecting client to login page');
-		throw redirectToLogin(cookies);
-	}
-
-	const user = await DB_CLIENT.prismaClient.user.findUnique({
-		where: {
-			id: userSession.sessionFor
+			currentSessions: {
+				id: sessionId
+			}
 		}
 	});
 
