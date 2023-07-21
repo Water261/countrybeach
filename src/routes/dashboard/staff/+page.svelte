@@ -48,5 +48,7 @@
 		</tbody>
 	</table>
 
-	<a href="/dashboard/staff/create" class="btn-secondary btn my-10 w-full">Create New User</a>
+	{#if data.user.position === "HR Officer"}
+		<a href="/dashboard/staff/create" class="btn-secondary btn my-10 w-full">Create New User</a>
+	{/if}
 </div>
