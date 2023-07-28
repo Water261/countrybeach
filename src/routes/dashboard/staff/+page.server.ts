@@ -1,3 +1,4 @@
+import { error } from '@sveltejs/kit';
 import { DbClient } from '../../../hooks.server';
 import type { PageServerLoad } from './$types';
 
@@ -21,6 +22,8 @@ export const load: PageServerLoad = async ({ parent }) => {
 				shop: true,
 			}
 		});
+	} else {
+		throw error(403, "Forbidden");
 	}
 
 	if (employees === null) {
