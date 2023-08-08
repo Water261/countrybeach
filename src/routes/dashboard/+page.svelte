@@ -121,19 +121,7 @@
 					type="text"
 					class="input-bordered input input-disabled"
 					disabled
-					value={data.shop.address}
-				/>
-			</div>
-			<div class="form-control">
-				<label for="state" class="label">
-					<span class="label-text">State</span>
-				</label>
-				<input
-					id="state"
-					type="text"
-					class="input-bordered input input-disabled"
-					disabled
-					value={data.shop.state}
+					value={`${data.shop.address}, ${data.shop.city}, ${data.shop.state} ${data.shop.postcode}`}
 				/>
 			</div>
 			<div class="form-control">
@@ -149,15 +137,27 @@
 				/>
 			</div>
 			<div class="form-control">
-				<label for="phoneNos" class="label">
-					<span class="label-text">Contact Numbers</span>
+				<label for="primaryPhoneNum" class="label">
+					<span class="label-text">Primary Contact Number</span>
 				</label>
 				<input
-					id="phoneNos"
+					id="primaryPhoneNum"
 					type="text"
 					class="input-bordered input input-disabled"
 					disabled
-					value={data.shop.phoneNumbers}
+					value={data.shop.primaryPhoneNumber}
+				/>
+			</div>
+			<div class="form-control">
+				<label for="secondaryPhoneNum" class="label">
+					<span class="label-text">Secondary Contact Number</span>
+				</label>
+				<input
+					id="secondaryPhoneNum"
+					type="text"
+					class="input-bordered input input-disabled"
+					disabled
+					value={data.shop.secondaryPhoneNumber}
 				/>
 			</div>
 		</div>

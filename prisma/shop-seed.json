@@ -2,49 +2,67 @@
 	{
 		"shopId": "B000",
 		"name": "Head Office",
-		"address": "2 Brown Street, Waverton",
+		"address": "2 Brown Street",
+		"city": "Waverton",
 		"state": "NSW",
 		"email": "info@countrybeach.com.au",
-		"phoneNumbers": "02 8245 7600"
+		"primaryPhoneNumber": "02 8245 7600",
+		"secondaryPhoneNumber": "",
+		"postcode": 2060
 	},
 	{
 		"shopId": "B001",
 		"name": "Waverton",
-		"address": "10 Brown Street, Waverton",
+		"address": "10 Brown Street",
+		"city": "Waverton",
 		"state": "NSW",
 		"email": "waverton@countrybeach.com.au",
-		"phoneNumbers": "02 4063 6845, 02 4063 6846"
+		"primaryPhoneNumber": "02 4063 6845",
+		"secondaryPhoneNumber": "02 4063 6846",
+		"postcode": 2060
 	},
 	{
 		"shopId": "B002",
 		"name": "Currumbin",
-		"address": "43 Island Avenue, Currumbin",
+		"address": "43 Island Avenue",
+		"city": "Currumbin",
 		"state": "QLD",
 		"email": "currumbin@countrybeach.com.au",
-		"phoneNumbers": "07 3222 3500, 07 3222 3501"
+		"primaryPhoneNumber": "07 3222 3500",
+		"secondaryPhoneNumber": "07 3222 3501",
+		"postcode": 4223
 	},
 	{
 		"shopId": "B006",
 		"name": "Bakers Hill",
-		"address": "1 Banksia Street, Bakers Hill",
+		"address": "1 Banksia Street",
+		"city": "Bakers Hill",
 		"state": "WA",
 		"email": "bakershill@countrybeach.com.au",
-		"phoneNumbers": "08 9066 6596"
+		"primaryPhoneNumber": "08 9066 6596",
+		"secondaryPhoneNumber": "",
+		"postcode": 6562
 	},
 	{
 		"shopId": "B007",
 		"name": "Lower Mangrove",
-		"address": "64 Wharf Street, Lower Mangrove",
+		"address": "64 Wharf Street",
+		"city": "Lower Mangrove",
 		"state": "NSW",
 		"email": "lowermangrove@countrybeach.com.au",
-		"phoneNumbers": "02 8245 7603"
+		"primaryPhoneNumber": "02 8245 7603",
+		"secondaryPhoneNumber": "",
+		"postcode": 2250
 	},
 	{
 		"shopId": "B012",
 		"name": "Clarenza",
-		"address": "24 Purcell Place, Clarenza",
+		"address": "24 Purcell Place",
+		"city": "Clarenza",
 		"state": "NSW",
 		"email": "clarenza@countrybeach.com.au",
-		"phoneNumbers": "02 8746 7522"
+		"primaryPhoneNumber": "02 8746 7522",
+		"secondaryPhoneNumber": "",
+		"postcode": 2460
 	}
 ]

@@ -16,7 +16,7 @@ model User {
 
   firstName String
   lastName String
-  email String @unique
+  email String
   position String
   salary Int
 
@@ -30,11 +30,14 @@ model User {
 
 model Shop {
   shopId String @id @map("id")
-  name String @unique
-  address String @unique
+  name String
+  address String
+  city String
   state String
-  email String @unique
-  phoneNumbers String @unique
+  postcode Int
+  email String
+  primaryPhoneNumber String
+  secondaryPhoneNumber String
 
   staff User[]
 
