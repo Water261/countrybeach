@@ -32,6 +32,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Editing {data.employee.firstName} - Country Beach</title>
+</svelte:head>
+
 <div class="flex justify-center px-40 py-5">
 	<form class="mx-10 flex w-1/3 flex-col" on:submit={saveChanges} bind:this={saveChangesForm}>
 		<h2 class="text-2xl font-bold">Employee Details</h2>

@@ -8,6 +8,8 @@
 	let resultMessage = '';
 	let resultSuccess = false;
 
+	let firstName: string;
+
 	async function createUser(ev: SvelteSubmitEvent) {
 		ev.preventDefault();
 
@@ -42,6 +44,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Creating {!firstName ? "Staff" : firstName} - Country Beach</title>
+</svelte:head>
+
 <div class="flex justify-center px-40 py-5">
 	<form class="mx-10 flex w-1/3 flex-col" on:submit={createUser} bind:this={createUserForm}>
 		<h2 class="text-2xl font-bold">Employee Details</h2>
@@ -49,7 +55,7 @@
 			<label for="firstName" class="label">
 				<span class="label-text">First Name</span>
 			</label>
-			<input id="firstName" name="firstName" type="text" class="input-bordered input" required />
+			<input id="firstName" name="firstName" type="text" class="input-bordered input" required bind:value={firstName} />
 		</div>
 		<div class="form-control">
 			<label for="lastName" class="label">

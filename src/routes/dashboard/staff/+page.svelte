@@ -4,6 +4,10 @@
 	export let data: PageData;
 </script>
 
+<svelte:head>
+	<title>Staff - Country Beach</title>
+</svelte:head>
+
 <div class="px-20 py-10">
 	<table class="table-zebra table">
 		<thead>
