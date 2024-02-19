@@ -15,7 +15,7 @@
 	"devDependencies": {
 		"@prisma/client": "^5.0.0",
 		"@sveltejs/adapter-auto": "^2.0.0",
-		"@sveltejs/kit": "^1.22.2",
+		"@sveltejs/kit": "^1.30.4",
 		"@types/bcrypt": "^5.0.0",
 		"@types/node-cron": "^3.0.8",
 		"@types/uuid": "^9.0.2",
